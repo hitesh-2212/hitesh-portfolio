@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="css/all.css">
+    <title>my profile</title>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body onload="loader()">
+    <div id="Loading"></div>
+    <!-----start Hearder section----->
+    <div id="hearder" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
+        <div class="contenier">
+            <nav>
+            
+                <ul id="sidmenu" data-aos="zoom-in">
+                    <li><a href="#hearder">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <!-- <li><a href="#portfolio">Projects</a></li> -->
+                    <li><a href="#contact">Contact</a></li>
+                    <i class="fa-solid fa-xmark" onclick="closemenu()"></i>
+                </ul>
+                <i class="fa-solid fa-bars" onclick="openmenu()"></i>
+            </nav>
+            <div class="hearder-text" data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine">
+                <p>Data Analyst </p>
+                <h1>Hi I am <span>Hitesh Sirswa</span> <br> From Jaipur</h1>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-----End Hearder section----->
+
+
+    <!-----start About section----->
+    <div id="about" data-aos="fade-up" data-aos-anchor-placement="center-bottom">
+        <div class="contenier">
+            <div class="row">
+                <div class="about-col-1">
+                    <img src="https://images.unsplash.com/photo-1551583899-d3f6258ec7c9?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NzF8fHByb2dyYW1tZXJ8ZW58MHx8MHx8fDA%3D"
+                        data-aos="zoom-in">
+                </div>
+                <div class="about-col-2" data-aos="zoom-in">
+                    <h1 class="sub-title">About Me</h1>
+                    <p>Results-oriented Data Analyst with a strong command of Power BI, SQL, and Excel for transforming raw data into
+                        actionable business insights. Skilled in data cleaning, modeling, and visualization to support data-driven decisionmaking. Passionate about leveraging analytics to uncover trends, and drive strategic growth.</p>
+                  
+                    <div class="tab-titles" data-aos="fade-left">
+                        <p class="tab-links active-link " onclick="opentab('skills')">Skills</p>
+                        <p class="tab-links" onclick="opentab('education')">Education</p>
+                        <p class="tab-links" onclick="opentab('experience')">Experience</p>
+                    </div>
+                    <div class="tab-contents active-tab" id="skills" data-aos="zoom-in">
+                        <h3>Data Analyst Skills</h3>
+                        <ul>
+                            <li><span>Programming & Database</span><br>Python, SQL</li>
+                            <li><span>Data Visualization</span><br>Power BI, Tableau</li>
+                            <li><span>Other Tools</span><br>Excel</li>
+                        </ul>
+                    </div>
+                     <div class="tab-contents" id="education">
+                        <ul>
+                            <li><span>Full Stack Data Science & AI</span><br>AlmaBetter - 2024 to 2025</li>
+                            <li><span>B.A (Bachelor of Arts)</span><br>Tirupati College of Technical Education, Jaipur - 2020 to 2022</li>
+                            <li><span>12th (Science - Maths)</span><br>Prerna Senior Secondary School, Bissau</li>
+                        </ul>
+                        
+                    </div>
+                    <div class="tab-contents" id="experience">
+                        <ul>
+                            <li><span>August 2024 - Present </span><br>Worked as a Data Analyst Trainee at AlmaBetter.</li>
+                        </ul>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-----End About section----->
+
+
+
+
+    <!-----Service section Start----->
+    <div id="services" data-aos="fade-up" data-aos-anchor-placement="top-center">
+        <div class="contenier">
+            <h1 class="sub-title">My Services</h1>
+            <div class="services-list">
+                <div data-aos="fade-right">
+                    <img class="service-img" src="images/data-analysis.png" alt="Data Analytics">
+                    <h2>Data Analysis & Visualization</h2>
+                    <p>Turning raw data into meaningful insights using Python, Excel, Power BI, and Tableau.</p>
+                    <!-- <a href="#">Learn More</a> -->
+                </div>
+                <div data-aos="flip-up">
+                    <img class="service-img" src="images/interactive_dashboard.png" alt="Dashboard Creation">
+                    <h2>Interactive Dashboards</h2>
+                    <p>Creating dynamic and visually appealing dashboards to track key business metrics in real-time.</p>
+                    <!-- <a href="#">Learn More</a> -->
+                </div>
+                <div data-aos="fade-left">
+                    <img class="service-img" src="images/data-cleaning.png" alt="Data Cleaning">
+                    <h2>Data Cleaning & Preparation</h2>
+                    <p>Ensuring high-quality data by cleaning, structuring, and optimizing datasets for analysis.</p>
+                    <!-- <a href="#">Learn More</a> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!----services section end ----->
+
+
+    <!----portfolio section Start ----->
+
+    <!-- <div id="portfolio">
+        <div class="contenier">
+            <h1 class="sub-title">My Repositories</h1>
+            <p>Explore my latest projects and contributions.</p>
+            <div class="work-list">
+                <div class="work" data-aos="zoom-in">
+                    <img src="images/Portfolio2.png">
+                    <div class="layer">
+                        <h3>Selling Books Online </h3>
+                        <p class="work-list-para">A full-fledged e-commerce platform for selling books online. This project was developed In MERN , showcasing my skills in full-stack development and project management.</p>
+                        <a target="_blank" href="https://github.com/meTusharsirswa/Capston-Project-MERN"><i class="fa-solid fa-up-right-from-square"></i></a>
+                    </div>
+                </div>
+                <div class="work" data-aos="zoom-in">
+                    <img src="images/Portfolio3.png">
+                    <div class="layer">
+                        <h3>Create Blog</h3>
+                        <p class="work-list-para">An interactive blog creation platform equipped with user authentication and content management features. Built using modern web technologies.</p>
+                        <a target="_blank" href="https://github.com/meTusharsirswa/CreateBlogs"><i class="fa-solid fa-up-right-from-square"></i></a>
+                    </div>
+                </div>
+                <div class="work" data-aos="zoom-in">
+                    <img src="images/Portfolio4.png">
+                    <div class="layer">
+                        <h3>The Curry Club</h3>
+                        <p class="work-list-para">"The Curry Club" website, a dynamic platform for a restaurant where customers can easily book tables and explore the delicious menu offerings. </p>
+                        <a target="_blank" href="https://www.thecurryclub.sg/"><i class="fa-solid fa-up-right-from-square"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    
+    <!----portfolio section End ----->
+
+
+    <!----Contact section Start ----->
+    <div id="contact">
+        <div class="contenier">
+            <div class="row">
+                <div class="contact-left" data-aos="fade-up-right">
+                    <h1 class="sub-title">Contact Me</h1>
+                    <p ><a class="email" href="mailto:hitesh2212sirswa@gmail.com"><i class="fa-solid fa-paper-plane"></i>hitesh2212sirswa@gmail.com</a></p>
+                    <p><a class="phone" href="tel:8005636289"><i class="fa-solid fa-square-phone-flip"></i>+91 8005636289</a></p>
+                    
+                    <div class="social-icons" data-aos="zoom-in">
+                        <!-- <a target="_blank" class="instagram" href="https://www.instagram.com/sirswatushar/"><i class="fa-brands fa-square-instagram"></i></a> -->
+                        <a target="_blank" class="github" href="https://github.com/hitesh-2212"><i class="fa-brands fa-github"></i></a>
+                        <a target="_blank" class="linkedin" href="https://www.linkedin.com/in/hitesh-sirswa-155414370/"><i class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                    <a href="Resume/Hitesh-Resume.pdf" class="btn btn2" target="_blank"> View Resume</a>
+                </div>
+                <div class="contact-right" data-aos="fade-up-left">
+                    <form id="contactForm"   action="https://formspree.io/f/xldoeyjg"
+                    method="post">
+                        <input type="text" id="yourName" name="Your Name" placeholder="Your Name" required>
+                        <input type="email" id="yourEmail" name="Your Email" placeholder="Your Email" required>
+                        <textarea id="yourMessage" name="Your Message" rows="6" placeholder="Your Message"></textarea>
+                        <button type="submit" class="btn btn2">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>
+                Copyright &copy; 
+                <script>document.write(new Date().getFullYear());</script> 
+                Website Developed By 
+                <span style="color: rgb(224, 44, 44);">
+                  <a href="https://sirswasolutions.com" target="_blank">Sirswa Solutions</a>
+                </span>
+              </p>
+                          </p>
+        </div>
+    </div>
+
+    <!----Contact section End ----->
+    <script>
+        var preloader = document.getElementById("Loading");
+        function loader() {
+            preloader.style.display = 'none';
+        }
+    </script>
+
+    <script>
+        var tablinks = document.getElementsByClassName("tab-links");
+        var tabcontents = document.getElementsByClassName("tab-contents");
+        function opentab(tabname) {
+            for (tablink of tablinks) {
+                tablink.classList.remove("active-link");
+            }
+            for (tabcontent of tabcontents) {
+                tabcontent.classList.remove("active-tab");
+            }
+            event.currentTarget.classList.add("active-link");
+            document.getElementById(tabname).classList.add("active-tab");
+        }
+
+    </script>
+
+    <!-- aos data  -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 900,
+        });
+    </script>
+   <script>
+    var sidmenu = document.getElementById("sidmenu");
+    var navbarIcon = document.querySelector(".fa-bars");
+
+    function openmenu() {
+        sidmenu.style.right = "0";
+        document.body.addEventListener("click", closeOutsideMenu);
+    }
+
+    function closemenu() {
+        sidmenu.style.right = "-200px";
+        document.body.removeEventListener("click", closeOutsideMenu);
+    }
+
+    function closeOutsideMenu(event) {
+        if (!sidmenu.contains(event.target) && event.target !== navbarIcon) {
+            closemenu();
+        }
+    }
+</script>
+
+    <script>
+        // Add event listener to the form submission
+        document.getElementById("contactForm").addEventListener("submit", function(event) {
+            // Clear the form fields after 1 second of submission
+            setTimeout(function() {
+                document.getElementById("yourName").value = "";
+                document.getElementById("yourEmail").value = "";
+                document.getElementById("yourMessage").value = "";
+            }, 2000); // 1000 milliseconds = 1 second
+        });
+    </script>
+    
+</body>
+
+</html>
