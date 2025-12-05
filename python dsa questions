@@ -1,0 +1,2054 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/hitesh-2212/hitesh-portfolio/blob/main/python%20dsa%20questions\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "U1N9vSTqY1GH",
+        "outputId": "52cc734a-bbd5-4dfe-cd19-d56ee624ecc9"
+      },
+      "outputs": [
+        {
+          "name": "stdout",
+          "output_type": "stream",
+          "text": [
+            "[24, 12, 8, 6]\n"
+          ]
+        }
+      ],
+      "source": [
+        "# Given an integer array, return a new array where each element is the product of all other elements except itself.\n",
+        "# [1,2,3,4] → [24,12,6,4]\n",
+        "nums=[1,2,3,4]\n",
+        "products=[]\n",
+        "for i in range(len(nums)):\n",
+        "  mul=1\n",
+        "  for j in range(len(nums)):\n",
+        "    if nums[i]!=nums[j]:\n",
+        "      mul*=nums[j]\n",
+        "  products.append(mul)\n",
+        "print(products)\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 24,
+      "metadata": {
+        "id": "2_aXgB7fZtCl",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "37f7d244-baea-4ec0-f334-61409d3db5ad"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "abc\n"
+          ]
+        }
+      ],
+      "source": [
+        "# Given a string, return the length of the longest substring with all unique characters.\n",
+        "# \"abcabcbb\" → 3\n",
+        "s='abcabcbb'\n",
+        "longest=0\n",
+        "char_set=set()\n",
+        "left=0\n",
+        "res=''\n",
+        "\n",
+        "for right in range(len(s)):\n",
+        "  while s[right] in char_set:\n",
+        "    char_set.remove(s[left])\n",
+        "    left+=1\n",
+        "  char_set.add(s[right])\n",
+        "  if right-left+1 > longest:\n",
+        "    longest=right-left+1\n",
+        "    res=s[left:right+1]\n",
+        "print(res)"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "5UorV6lMbL_Y",
+        "outputId": "58a5ac9e-6a99-4d5b-cddf-ec28e7717740"
+      },
+      "outputs": [
+        {
+          "name": "stdout",
+          "output_type": "stream",
+          "text": [
+            "bbbbbbbb\n"
+          ]
+        }
+      ],
+      "source": []
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "lo58-DsBbZcB"
+      },
+      "outputs": [],
+      "source": [
+        "# employees(emp_id, name, dept_id, salary, join_date)\n",
+        "# departments(dept_id, dept_name)\n",
+        "# sales(order_id, emp_id, amount, order_date)\n",
+        "\n",
+        "\n",
+        "# Return the second highest salary from employees.\n",
+        "\n",
+        "# Return each department and its average salary (rounded to 2 decimals)."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "wuZToYS9cSdK"
+      },
+      "outputs": [],
+      "source": [
+        "select emp_id,name\n",
+        "from (select *,dense_rank()over(order by salary desc)as rnk from employees)\n",
+        "where rnk=2\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "foVw2rREcs8a"
+      },
+      "outputs": [],
+      "source": [
+        "select d.dept_name,round(avg(e.salary),2)as average_salary\n",
+        "from employees as e\n",
+        "join departments as d\n",
+        "on e.dept_id=d.dept_id\n",
+        "group by d.dept_name"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 3,
+      "metadata": {
+        "id": "-CjnxA_OwaPC",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "be5a27f2-96f7-40a3-f487-bf82dc299778"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "abc\n"
+          ]
+        }
+      ],
+      "source": [
+        "# 1️⃣Longest Substring Without Repeating Characters\n",
+        "# Input: \"abcabcbb\"\n",
+        "# Output: \"abc\"\n",
+        "s='abcabcbb'\n",
+        "char_seen=set()\n",
+        "left=0\n",
+        "max_len=0\n",
+        "res=\"\"\n",
+        "for right in range(len(s)):\n",
+        "    while s[right] in char_seen:\n",
+        "      char_seen.remove(s[left])\n",
+        "      left+=1\n",
+        "    char_seen.add(s[right])\n",
+        "\n",
+        "    if right-left+1>max_len:\n",
+        "      max_len=right-left+1\n",
+        "      res=s[left:right+1]\n",
+        "\n",
+        "print(res)"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "s='abcabcbb'\n",
+        "char_set=set()\n",
+        "res=''\n",
+        "left=0\n",
+        "max_len=0\n",
+        "\n",
+        "for right in range(len(s)):\n",
+        "  while s[right] in char_set:\n",
+        "    char_set.remove(s[left])\n",
+        "    left+=1\n",
+        "  char_set.add(s[right])\n",
+        "  max_len=max(max_len,right-left+1)\n",
+        "print(max_len)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "MU5xj1Ahvjhp",
+        "outputId": "8dd5baf1-adc3-49c9-e05f-359367f0ecae"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "3\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# 2️⃣Longest Substring With At Most K Distinct Characters\n",
+        "# Input: \"eceba\", k = 2\n",
+        "# Output: \"ece\"\n",
+        "s=\"eceba\"\n",
+        "k=2\n",
+        "res=''\n",
+        "freq={}\n",
+        "max_len=0\n",
+        "left=0\n",
+        "for right in range(len(s)):\n",
+        "  freq[s[right]]=freq.get(s[right],0)+1\n",
+        "\n",
+        "  while len(freq)>k:\n",
+        "    freq[s[left]]-=1\n",
+        "    if freq[s[left]]==0:\n",
+        "      del freq[s[left]]\n",
+        "    left+=1\n",
+        "\n",
+        "  if right-left+1>max_len:\n",
+        "    max_len=right-left+1\n",
+        "    res=s[left:right+1]\n",
+        "print(res)\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "idJHhF9-3fbE",
+        "outputId": "ed6fce33-9dc7-42aa-a74e-c8753302237c"
+      },
+      "execution_count": 6,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "a\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# 3️⃣Longest Substring With All Unique Characters\n",
+        "# Input: \"programming\"\n",
+        "# Output: \"ogram\" (length = 4)\n",
+        "s='programming'\n",
+        "max_len=0\n",
+        "char_set=set()\n",
+        "left=0\n",
+        "for right in range(len(s)):\n",
+        "  while s[right] in char_set:\n",
+        "    char_set.remove(s[left])\n",
+        "    left+=1\n",
+        "  char_set.add(s[right])\n",
+        "  max_len=max(max_len,right-left+1)\n",
+        "print(max_len)"
+      ],
+      "metadata": {
+        "id": "kT-emAEldGWj",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "51fceafc-f1cd-4620-e408-91368f46e874"
+      },
+      "execution_count": 21,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "5\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# 4️⃣ Find All Unique Substrings of a String\n",
+        "# Input: \"aba\"\n",
+        "# Output:\n",
+        "# \"a\", \"b\", \"ab\", \"ba\", \"aba\" (no duplicates)\n",
+        "s=\"aba\"\n",
+        "res=[]\n",
+        "for i in range(len(s)):\n",
+        "  for j in range(i,len(s)):\n",
+        "    sub=s[i:j+1]\n",
+        "    if sub not in res:\n",
+        "      res.append(sub)\n",
+        "print(res)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "MAVJRTOLjW2v",
+        "outputId": "57c57433-b4ca-4c09-8b2f-b539b7b436dc"
+      },
+      "execution_count": 36,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "['a', 'ab', 'aba', 'b', 'ba']\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# 5️⃣ Check if One String is a Rotation of Another\n",
+        "# Input:\n",
+        "# s1 = \"abcd\"\n",
+        "# s2 = \"cdab\"\n",
+        "# Output: True\n",
+        "# (Because s2 is inside s1+s1 → \"abcdabcd\")\n",
+        "\n",
+        "s1 = \"abcd\"\n",
+        "s2 = \"cdab\"\n",
+        "s2 in s1+s1"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "Zpm3iCrslTUI",
+        "outputId": "21654b82-4344-4343-b8a0-bdab8c67971c"
+      },
+      "execution_count": 24,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "True"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 24
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# 6️⃣ Remove Consecutive Duplicate Characters\n",
+        "# Input: \"aabbccdda\"\n",
+        "# Output: \"abcda\"\n",
+        "s='aabbccdda'\n",
+        "res=''\n",
+        "for i in range(len(s)):\n",
+        "  if i==0 or s[i]!=s[i-1]:\n",
+        "    res+=s[i]\n",
+        "print(res)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "AeNRkLqcp-KI",
+        "outputId": "78325d12-9138-4b38-f86d-0869028f5631"
+      },
+      "execution_count": 16,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "abcda\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# 7️⃣ Replace Digit With Next Character Repeated Digit Times\n",
+        "# Input: \"a3z\"\n",
+        "# Output: \"aaaz\"\n",
+        "# (Expand next character by the digit)\n",
+        "\n",
+        "s='a3z'\n",
+        "res=''\n",
+        "for i in range(len(s)):\n",
+        "  if s[i].isdigit():                          #self done quite easy...\n",
+        "    res+=(int(s[i])-1)*s[i+1]\n",
+        "  else:\n",
+        "    res+=s[i]\n",
+        "print(res)\n",
+        "\n",
+        "                                            # OR\n",
+        "\n",
+        "s='aaaz'\n",
+        "res=''\n",
+        "i=0\n",
+        "while i<len(s):\n",
+        "  if s[i].isdigit():\n",
+        "    count=int(s[i])\n",
+        "    res+=s[i+1]*count\n",
+        "    i+=2\n",
+        "  else:\n",
+        "    res+=s[i]\n",
+        "    i+=1\n",
+        "print(res)\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "3DitxxxPw_Os",
+        "outputId": "eaf98863-cf88-4ed0-dc57-5b1fe66a3a54"
+      },
+      "execution_count": 66,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "azzz\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# 8️⃣ Longest Word in a Sentence\n",
+        "# Input: \"Python makes coding enjoyable and fun\"\n",
+        "# Output: \"enjoyable\"\n",
+        "s=\"Python makes coding enjoyable and fun\"\n",
+        "max_char=s[0]\n",
+        "for i in s.split():\n",
+        "  if len(i)>len(max_char):\n",
+        "    max_char=i\n",
+        "print(max_char)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "gRe6H2T7zziX",
+        "outputId": "7f1de541-205d-41d8-d89a-2f813de61113"
+      },
+      "execution_count": 73,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "enjoyable\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# 9️⃣ Rearrange String: Remove Repeating Characters But Keep First Occurrence\n",
+        "# Input: \"programming\"\n",
+        "# Output: \"progamin\"\n",
+        "s='programming'\n",
+        "res=''\n",
+        "for i in s:\n",
+        "  if i not in res:\n",
+        "    res+=i\n",
+        "print(res)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "5dZOgNui3CCm",
+        "outputId": "a47b62b4-5e8e-41bf-b4c0-fbcb9a843ed4"
+      },
+      "execution_count": 76,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "progamin\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# 🔟 All Substrings With Length >= 2\n",
+        "# Input: \"abc\"\n",
+        "# Output:\n",
+        "# \"ab\", \"abc\", \"bc\"\n",
+        "s='abc'\n",
+        "res=[]\n",
+        "for i in range(len(s)):\n",
+        "  for j in range(i,len(s)):\n",
+        "    sub=s[i:j+1]\n",
+        "    if len(sub)>=2:\n",
+        "      res.append(sub)\n",
+        "print(res)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "GSILKzJg31TF",
+        "outputId": "1ee8d967-c678-44d2-d3ca-3dccfcc8d2d6"
+      },
+      "execution_count": 81,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "['ab', 'abc', 'bc']\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# 1️⃣ Remove Duplicates but Keep Order\n",
+        "# Input:\n",
+        "# [1, 6, 5, 3, 4, 5, 4, 3]\n",
+        "# Output:\n",
+        "# [1, 6, 5, 3, 4]\n",
+        "l=[1,6,5,3,4,5,4,3]\n",
+        "res=[]\n",
+        "for i in l:\n",
+        "  if i not in res:\n",
+        "    res.append(i)\n",
+        "print(res)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "lchVVLI35SfG",
+        "outputId": "f076f1d9-b35f-4721-cddb-1c0a907bdc63"
+      },
+      "execution_count": 23,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "[1, 6, 5, 3, 4]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# 2️⃣ Find the Second Largest Number in a List\n",
+        "# Input:\n",
+        "# [10, 20, 4, 45, 99]\n",
+        "# Output:\n",
+        "# 45\n",
+        "l=[10,20,4,45,46,45,99]\n",
+        "first=second=float('-inf')\n",
+        "for i in l:\n",
+        "  if i>first:\n",
+        "    second=first\n",
+        "    first=i\n",
+        "  elif i>second and i!=first:\n",
+        "    second=i\n",
+        "print(second)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "1BcNOkDIcIJr",
+        "outputId": "05c1fd8a-b099-4680-c17e-95537a3e49dc"
+      },
+      "execution_count": 28,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "46\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# 3️⃣ Rotate List by K Steps\n",
+        "# Input:\n",
+        "# lst = [1,2,3,4,5], k = 2\n",
+        "# Output:\n",
+        "# [4,5,1,2,3]\n",
+        "l=[1,2,3,4,5]\n",
+        "k=2\n",
+        "k=k%len(l)\n",
+        "res=l[-k:]+l[:-k]\n",
+        "print(res)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "6XMZYPYHcnRl",
+        "outputId": "1552234c-d102-4304-e0fd-6f0a4f250689"
+      },
+      "execution_count": 29,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "[4, 5, 1, 2, 3]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# 4️⃣ Find Missing Number from 1 to N\n",
+        "# Input:\n",
+        "# [1,2,4,5]\n",
+        "# Output:\n",
+        "# 3\n",
+        "l=[1,2,4,5]\n",
+        "for i in range(min(l),max(l)+1):\n",
+        "  if i not in l:\n",
+        "    print(i)\n",
+        "    break"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "lh7sDaR3doPF",
+        "outputId": "beafc8ec-6649-4b7d-dbdc-ef0f89a193e6"
+      },
+      "execution_count": 37,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "3\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# 5️⃣ Pair Sum Problem (Two-Sum)\n",
+        "# Input:\n",
+        "# lst = [2,7,11,15], target = 9\n",
+        "# Output:\n",
+        "# (2,7)\n",
+        "lst=[2,7,11,15]\n",
+        "target=9\n",
+        "for i in range(len(lst)):\n",
+        "  for j in range(i+1,len(lst)):\n",
+        "    if lst[i]+lst[j]==target:\n",
+        "      print((lst[i],lst[j]))"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "MbrI0f4SeEg1",
+        "outputId": "07bc9954-dc95-464f-c9d3-08fdb8db9796"
+      },
+      "execution_count": 41,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "(2, 7)\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# 6️⃣ Count Frequency of Elements Without Using Counter\n",
+        "# Input:\n",
+        "# [1,2,2,3,3,3]\n",
+        "# Output:\n",
+        "# {1:1, 2:2, 3:3}\n",
+        "lst=[1,2,2,3,3,3]\n",
+        "freq={}\n",
+        "for i in lst:\n",
+        "  freq[i]=freq.get(i,0)+1\n",
+        "print(freq)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "-FyYRpSifUPs",
+        "outputId": "610e6d29-d893-4d8f-f53d-9fc954f6c946"
+      },
+      "execution_count": 42,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "{1: 1, 2: 2, 3: 3}\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# 7️⃣ Find All Pairs With Difference K\n",
+        "# Input:\n",
+        "# lst = [1,5,3,4,2], k = 2     (b-a)\n",
+        "# Output:\n",
+        "# (1,3), (3,5), (2,4)\n",
+        "lst=[1,5,3,4,2]\n",
+        "k=2\n",
+        "for i in range(len(lst)):\n",
+        "  for j in range(len(lst)):\n",
+        "    if i !=j and lst[j]-lst[i]==k:\n",
+        "      print((lst[i],lst[j]),end=', ')\n",
+        ""
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "7Bqkv8WUgLmd",
+        "outputId": "84be54de-52f3-4ff7-f8bb-76bcd8ed14d5"
+      },
+      "execution_count": 46,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "(1, 3), (3, 5), (2, 4), "
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# 8️⃣ Check if a List is Palindrome\n",
+        "# Input:\n",
+        "# [1,2,3,2,1]\n",
+        "# Output:\n",
+        "# True\n",
+        "lst=[1,2,3,2,1]\n",
+        "if lst==lst[::-1]:\n",
+        "  print(True)\n",
+        "else:\n",
+        "  print(False)\n",
+        "                                        #OR\n",
+        "\n",
+        "# lst=[1,2,3,2,1]\n",
+        "# res=[]\n",
+        "# for i in range(len(lst)-1,-1,-1):\n",
+        "#     res.append(lst[i])\n",
+        "# print(res==lst)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "lhr1b9AXhN1R",
+        "outputId": "083cc10a-3168-4d6c-c2a7-361c7a4d9bce"
+      },
+      "execution_count": 52,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "True\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "l=[1,3,5]\n",
+        "r=[2,4,6]\n",
+        "s=l+r\n",
+        "\n",
+        "for i in range(len(s)):\n",
+        "  for j in range(len(s)-1):\n",
+        "    if s[j]>s[j+1]:\n",
+        "      s[j],s[j+1]=s[j+1],s[j]\n",
+        "print(s)"
+      ],
+      "metadata": {
+        "id": "u_FMOKijkO-0",
+        "outputId": "b4a3a623-8f4f-45cd-f3b5-6932cdb0164c",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": 26,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "[1, 2, 3, 4, 5, 6]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# 9️⃣ Merge Two Sorted Lists Into One Sorted List\n",
+        "# Input:\n",
+        "# [1,3,5] and [2,4,6]\n",
+        "# Output:\n",
+        "# [1,2,3,4,5,6]\n",
+        "l1=[1,3,5]\n",
+        "l2=[2,4,6]\n",
+        "l3=l1+l2\n",
+        "\n",
+        "# BUbble Sort\n",
+        "for i in range(len(l3)):\n",
+        "  for j in range(0,len(l3)-1):\n",
+        "    if l3[j]>l3[j+1]:\n",
+        "      l3[j],l3[j+1]=l3[j+1],l3[j]\n",
+        "print(l3)\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "X8lEDSNbhjrt",
+        "outputId": "795a4b0e-20d7-4afc-9a27-2f65c4b9ba84"
+      },
+      "execution_count": 10,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "[1, 2, 3, 4, 5, 6]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# 🔟 Remove All Occurrences of a Specific Element**\n",
+        "# Input:\n",
+        "# lst = [1,2,3,2,4], element = 2\n",
+        "# Output:\n",
+        "# [1,3,4]\n",
+        "lst=[1,2,3,2,4]\n",
+        "ele=2\n",
+        "res=[]\n",
+        "for i in lst:\n",
+        "  if i !=ele :\n",
+        "    res.append(i)\n",
+        "print(res)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "0xsEsBjOhz1M",
+        "outputId": "3cc2b977-9e67-4f63-ec7a-68af853bcd8b"
+      },
+      "execution_count": 12,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "[1, 3, 4]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# 1️⃣1️⃣ Find the Longest Increasing Subsequence (Basic version)\n",
+        "# Input:\n",
+        "# [10,9,2,5,3,7,101,18]\n",
+        "# Output:\n",
+        "# [2,5,7,18] (one valid LIS)"
+      ],
+      "metadata": {
+        "id": "B9pWRrRDcELF",
+        "outputId": "d2b98251-9407-4336-ca01-13db187316af",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": 14,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "[101, 101, 101, 101, 101, 101]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# 1️⃣2️⃣ Flatten a Nested List\n",
+        "# Input:\n",
+        "# [1, [2,3], [4, [5]]]\n",
+        "# Output:\n",
+        "# [1,2,3,4,5]\n",
+        "lst=[1, [2,3], [4, [5]]]\n",
+        "res=[]\n",
+        "def flatten(lst):\n",
+        "  for i in lst:\n",
+        "    if isinstance(i,list):\n",
+        "      flatten(i)\n",
+        "    else:\n",
+        "      res.append(i)\n",
+        "  return res\n",
+        "print(flatten(lst))"
+      ],
+      "metadata": {
+        "id": "1gRkgYjvfSLu",
+        "outputId": "886a18a2-1592-46f2-aea5-e6b924c5b3cc",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": 19,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "[1, 2, 3, 4, 5]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# 1️⃣ Check if Two Strings Are Isomorphic\n",
+        "# Input:\n",
+        "# s = \"egg\", t = \"add\"\n",
+        "# Output: True\n",
+        "# (Each character in s can map to exactly one character in t)\n",
+        "\n",
+        "def is_isomorphic(s,t):\n",
+        "  if len(s)!=len(t):\n",
+        "    return False\n",
+        "\n",
+        "  map1={}\n",
+        "  map2={}\n",
+        "  for a,b in zip(s,t):\n",
+        "    if a in map1 and map1[a]!=b:\n",
+        "      return False\n",
+        "    if b in map2 and map2[b]!=a:\n",
+        "      return False\n",
+        "    map1[a]=b\n",
+        "    map2[b]=a\n",
+        "  return True\n",
+        "\n",
+        "\n",
+        "print(is_isomorphic('egg','add'))\n",
+        ""
+      ],
+      "metadata": {
+        "id": "aAZV4b8EhOaW",
+        "outputId": "cc168ea0-b7ec-43c9-ad7c-7823fc5b9546",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": 19,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "True\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# 2️⃣ Find the Most Frequent Element in a List\n",
+        "# Input:\n",
+        "# [3, 1, 3, 2, 3,4,4,4,4,4,4 2]\n",
+        "# Output: 3\n",
+        "# (Use dictionary counts)\n",
+        "lst=[3,1,3,2,3,3,4,4,4,4,4,4,4,2]\n",
+        "freq={}\n",
+        "\n",
+        "for i in lst:\n",
+        "  freq[i]=freq.get(i,0)+1\n",
+        "max_freq=max(freq,key=freq.get)\n",
+        "print(max_freq)\n"
+      ],
+      "metadata": {
+        "id": "2t5Z5U_qbv-N",
+        "outputId": "2aaf9cd3-b873-409d-96a5-da1443786895",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": 39,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "4\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# 3️⃣Move All Zeroes to the End (Order Preserved)\n",
+        "# Input:\n",
+        "# [0, 1, 0, 3, 12]\n",
+        "# Output:\n",
+        "# [1, 3, 12, 0, 0]\n",
+        "lst=[0,1,0,3,12]\n",
+        "left=0\n",
+        "for right in range(len(lst)):\n",
+        "  if lst[right]!=0:\n",
+        "    lst[right],lst[left]=lst[left],lst[right]\n",
+        "    left+=1\n",
+        "print(lst)\n"
+      ],
+      "metadata": {
+        "id": "tC91qh4SeJr2",
+        "outputId": "49e613c5-752a-4abd-ae33-1886bca017ac",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": 64,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "[1, 3, 12, 0, 0]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# 4️⃣ Return Characters That Appear in All Strings\n",
+        "# Input:\n",
+        "# [\"bella\", \"label\", \"roller\"]\n",
+        "# Output:\n",
+        "# [\"l\", \"l\"]/\n",
+        "words=[\"bella\", \"label\", \"roller\"]\n",
+        "res=words[0]\n",
+        "for w in words[1:]:\n",
+        "  new_res=[]\n",
+        "  for ch in res:\n",
+        "    if ch in w:\n",
+        "      new_res.append(ch)\n",
+        "print(new_res)"
+      ],
+      "metadata": {
+        "id": "Lv0Qt0-U2_3e",
+        "outputId": "d2b62824-79e7-4836-9e6e-27fa9b3045ea",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": 71,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "['e', 'l', 'l']\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# 5️⃣ Longest Consecutive Sequence\n",
+        "# Input:\n",
+        "# [100, 4, 200, 1, 3, 2]\n",
+        "# Output: 4\n",
+        "# (sequence: 1,2,3,4)\n",
+        "lst=[1,2,5,4,6,8]\n",
+        "lst.sort()\n",
+        "longest=[]\n",
+        "current=[lst[0]]\n",
+        "for i in range(1,len(lst)):\n",
+        "  if lst[i]==lst[i-1]+1:\n",
+        "    current.append(lst[i])\n",
+        "  else:\n",
+        "    if len(current)>len(longest):\n",
+        "      longest=current\n",
+        "    current=[lst[i]]\n",
+        "if len(current)>len(longest):\n",
+        "  longest=current\n",
+        "\n",
+        "print(longest)\n",
+        "print(len(longest))\n"
+      ],
+      "metadata": {
+        "id": "vshpLUD98Svb",
+        "outputId": "baed37b4-496b-4734-a6d0-5cd8eaafb8b5",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": 24,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "[4, 5, 6]\n",
+            "3\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# 6️⃣ Find First Non-Repeating Character\n",
+        "# Input: \"swiss\"\n",
+        "# Output: \"w\"\n",
+        "s='swiss'\n",
+        "freq={}\n",
+        "for i in s:\n",
+        "  freq[i]=freq.get(i,0)+1\n",
+        "for i in s:\n",
+        "  if freq[i]==1:\n",
+        "    print(i)\n",
+        "    break"
+      ],
+      "metadata": {
+        "id": "h5anf5DnX2o4",
+        "outputId": "e1377ed9-36ea-4de6-b7a5-c79a1f867ced",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": 3,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "w\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# 7️⃣ Maximum Sum of Subarray of Size K\n",
+        "# Input: lst = [2, 1, 5, 1, 3, 2], k = 3\n",
+        "# Output: 9\n",
+        "# (subarray: 5+1+3)\n",
+        "lst=[2,1,5,1,3,2]\n",
+        "k=3\n",
+        "max_sum=0\n",
+        "window_sum=0\n",
+        "left=0\n",
+        "\n",
+        "for right in range(len(lst)):\n",
+        "  window_sum+=lst[right]\n",
+        "\n",
+        "  if right-left+1 == k:\n",
+        "    max_sum=max(max_sum,window_sum)\n",
+        "    window_sum-=lst[left]\n",
+        "    left+=1\n",
+        "print(max_sum)"
+      ],
+      "metadata": {
+        "id": "LYpmJBh7X2fm",
+        "outputId": "ba1dba26-2b4e-4b9c-87d7-ef1a63f28be7",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": 2,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "9\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# 9️⃣ Group Anagrams\n",
+        "# Input:\n",
+        "# [\"eat\", \"tea\", \"tan\", \"ate\", \"nat\", \"bat\"]\n",
+        "# Output:\n",
+        "# [[\"eat\",\"tea\",\"ate\"], [\"tan\",\"nat\"], [\"bat\"]]\n",
+        "\n",
+        "lst=[\"eat\", \"tea\", \"tan\", \"ate\", \"nat\", \"bat\"]\n",
+        "freq={}\n",
+        "for i in lst:\n",
+        "  key=''.join(sorted(i))\n",
+        "  if key not in freq:\n",
+        "    freq[key]=[i]\n",
+        "  else:\n",
+        "    freq[key].append(i)\n",
+        "print(freq.values())"
+      ],
+      "metadata": {
+        "id": "-L_M7DucZPtg",
+        "outputId": "ed44430c-7d6a-4a42-9930-31a64a30eba8",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": 9,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "dict_values([['eat', 'tea', 'ate'], ['tan', 'nat'], ['bat']])\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# 🔟 Remove Adjacent Duplicates From a String\n",
+        "# Input: \"abbaca\"\n",
+        "# Output: \"ca\"\n",
+        "s='abbaca'\n",
+        "res=''\n",
+        "for i in s:\n",
+        "  if res and res[-1]==i: # “If res is not empty AND the last character in res equals the current character ch, then remove the duplicate.”\n",
+        "    res=res[:-1]\n",
+        "  else:\n",
+        "    res+=i\n",
+        "print(res)\n"
+      ],
+      "metadata": {
+        "id": "c6UbxIVFZUz9",
+        "outputId": "194d7bfc-fcd7-424b-9ceb-ab7ae3d75330",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": 18,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "ca\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "MpXgyKxHj475"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "mhDhB8s5j44X"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "8YU2dSk0j41I"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# 1️⃣ Count frequency of each element (without Counter)\n",
+        "\n",
+        "# Input: [1,2,2,3,3,3]\n",
+        "# Output: {1:1, 2:2, 3:3}\n",
+        "lst=[1,2,3,3,3,2]\n",
+        "freq={}\n",
+        "for i in lst:\n",
+        "  freq[i]=freq.get(i,0)+1\n",
+        "print(freq)"
+      ],
+      "metadata": {
+        "id": "KaQ2RAj5tOss",
+        "outputId": "7cdaf7c0-514f-4075-c33d-999285a774d3",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": 1,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "{1: 1, 2: 2, 3: 3}\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# 2️⃣ Find the most frequent element\n",
+        "\n",
+        "# Input: [3,1,3,2,3,2]\n",
+        "# Output: 3\n",
+        "lst=[3,1,3,2,3,3,2]\n",
+        "freq={}\n",
+        "max_res=0\n",
+        "for i in lst:\n",
+        "  freq[i]=freq.get(i,0)+1\n",
+        "for val,count in freq.items():\n",
+        "  if count>max_res:\n",
+        "    max_res=count\n",
+        "    ans=val\n",
+        "print(ans)"
+      ],
+      "metadata": {
+        "id": "bPPUlG-mkJ-w",
+        "outputId": "af57849e-889e-4d11-9768-450220aa62ca",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": 7,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "3\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# 3️⃣ Move all zeroes to end (keep order)\n",
+        "\n",
+        "# Input: [0,1,0,3,12]\n",
+        "# Output: [1,3,12,0,0]\n",
+        "lst=[0,1,0,3,12]\n",
+        "left=0\n",
+        "for i in range(len(lst)):\n",
+        "    if lst[i]!=0:\n",
+        "      lst[i],lst[left]=lst[left],lst[i]\n",
+        "      left+=1\n",
+        "\n",
+        "print(lst)\n"
+      ],
+      "metadata": {
+        "id": "TcvVqbzeqjVw",
+        "outputId": "b5b46f13-2a78-473a-b7b9-0eca39e01058",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": 18,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "[1, 3, 12, 0, 0]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# 4️⃣ Check if two strings are anagrams\n",
+        "\n",
+        "# Input: \"listen\", \"silent\"\n",
+        "# Output: True\n",
+        "sorted('listen')==sorted('silent')"
+      ],
+      "metadata": {
+        "id": "uP7He1YxwpeS",
+        "outputId": "aab2af83-442a-47e1-9e2f-1ed00762c203",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": 19,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "True"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 19
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# 5️⃣ Check if string is palindrome\n",
+        "\n",
+        "# Input: \"madam\"\n",
+        "# Output: True\n",
+        "s='mada'\n",
+        "res=''\n",
+        "for i in range(len(s)-1,-1,-1):\n",
+        "  res+=s[i]\n",
+        "print(res)\n"
+      ],
+      "metadata": {
+        "id": "FXFJ04KYyUJc",
+        "outputId": "ead83059-2dc6-423d-b0bf-e3452e99e54c",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": 30,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "adam\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# 6️⃣ Longest substring without repeating characters\n",
+        "\n",
+        "# Input: \"abcabcbb\"\n",
+        "# Output: \"abc\" (length 3)\n",
+        "s='abcabcbb'\n",
+        "char_set=set()\n",
+        "max_len=0\n",
+        "res=''\n",
+        "left=0\n",
+        "for right in range(len(s)):\n",
+        "  while s[right] in char_set:\n",
+        "    char_set.remove(s[left])\n",
+        "    left+=1\n",
+        "  char_set.add(s[right])\n",
+        "\n",
+        "  if max_len < right-left+1:\n",
+        "    max_len=right-left+1\n",
+        "    res=s[left:right+1]\n",
+        "print(res)\n",
+        "print(len(res))\n"
+      ],
+      "metadata": {
+        "id": "kI5XcJ8Zygkn",
+        "outputId": "0daa08c5-7820-4517-ed03-5fcad4bff927",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": 34,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "abc\n",
+            "3\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# 7️⃣ Return characters that appear in all strings\n",
+        "\n",
+        "# Input: [\"bella\", \"label\", \"roller\"]\n",
+        "# Output: [\"l\", \"l\"]\n",
+        "\n",
+        "lst=['bella','label','roller']\n",
+        "first=lst[0]\n",
+        "res=[]\n",
+        "for ch in first:\n",
+        "  if all(ch in word for word in lst):\n",
+        "    res.append(ch)\n",
+        "    lst = [word.replace(ch, '', 1) for word in lst]\n",
+        "print(res)\n",
+        ""
+      ],
+      "metadata": {
+        "id": "NReq2KM9zkeA",
+        "outputId": "29c7a281-16c4-4bb2-c521-eb995bf7bb01",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": 43,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "['e', 'l', 'l']\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# 8️⃣ First non-repeating character\n",
+        "\n",
+        "# Input: \"swiss\"\n",
+        "# Output: \"w\"\n",
+        "s='swiss'\n",
+        "res=''\n",
+        "for i in s:\n",
+        "  if s.count(i)==1:\n",
+        "    res=i\n",
+        "    break\n",
+        "print(res)"
+      ],
+      "metadata": {
+        "id": "REZpy0426MnT",
+        "outputId": "d6903c4e-5fac-470f-d764-3814c8f67590",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": 48,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "w\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# 9️⃣ Remove adjacent duplicates\n",
+        "\n",
+        "# Input: \"abbaca\"\n",
+        "# Output: \"ca\"\n",
+        "s='abbaca'\n",
+        "res=''\n",
+        "for i in s:\n",
+        "  if res and res[-1]==i:\n",
+        "    res=res[:-1]\n",
+        "  else:\n",
+        "    res+=i\n",
+        "print(res)"
+      ],
+      "metadata": {
+        "id": "pciDEA0S7Brh",
+        "outputId": "06b7b19e-6451-402a-92a5-8d217eff79bc",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": 54,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "ca\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# 🔟 Remove all occurrences of an element\n",
+        "# Input: [1,2,3,2,4], element = 2\n",
+        "# Output: [1,3,4]\n",
+        "lst=[1,2,3,2,4]\n",
+        "el=2\n",
+        "res=[]\n",
+        "for i in lst:\n",
+        "  if i !=el:\n",
+        "    res.append(i)\n",
+        "print(res)"
+      ],
+      "metadata": {
+        "id": "86iUXGP78j8A",
+        "outputId": "ebe66888-837d-4edc-c98d-43937e80ed2a",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": 56,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "[1, 3, 4]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# 1️⃣1️⃣ Two-Sum (pair sum)\n",
+        "# Input: [2,7,11,15], target=9\n",
+        "# Output: (2,7)\n",
+        "\n",
+        "lst=[2,7,11,15]\n",
+        "target=9\n",
+        "for i in range(len(lst)):\n",
+        "  for j in range(len(lst)):\n",
+        "    if lst[i]+lst[j]==target:\n",
+        "      print((lst[i],lst[j]))"
+      ],
+      "metadata": {
+        "id": "i5zpfyDx9W-a",
+        "outputId": "43812eb5-02bd-4afc-9bb3-a56203237a96",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": 57,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "(2, 7)\n",
+            "(7, 2)\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# 1️⃣2️⃣ Find longest consecutive sequence\n",
+        "# Input: [100,4,200,1,3,2]\n",
+        "# Output: 4 (seq: 1,2,3,4)\n",
+        "lst=[100,4,200,1,3,2]\n",
+        "nums=set(lst)\n",
+        "longest=0\n",
+        "\n",
+        "for n in nums:\n",
+        "  if n-1 not in nums:\n",
+        "    length=1\n",
+        "    current=n\n",
+        "\n",
+        "    while current+1 in nums:\n",
+        "      length+=1\n",
+        "      current+=1\n",
+        "    longest=max(longest,length)\n",
+        "print(longest)\n"
+      ],
+      "metadata": {
+        "id": "Q7cCSFkE9pgO",
+        "outputId": "aea9a29e-cb77-4d13-88eb-1959d54c44e3",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": 63,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "4\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# 1️⃣3️⃣ Flatten a nested list\n",
+        "\n",
+        "# Input: [1,[2,3],[4,[5]]]\n",
+        "# Output: [1,2,3,4,5]\n",
+        "lst=[1,[2,3],[4,[5]]]\n",
+        "for i in lst:\n",
+        "  if isinstance(i,list):\n",
+        "    flatten(i)\n",
+        "  else:\n",
+        "    res.append(i)"
+      ],
+      "metadata": {
+        "id": "AZzo0Y5z_kV7"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# 1️⃣4️⃣ Sort a list without using sort() (bubble sort)\n",
+        "# Input: [5,2,9,1]\n",
+        "# Output: [1,2,5,9]\n",
+        "lst=[5,2,9,1]\n",
+        "for i in range(len(lst)):\n",
+        "  for j in range(len(lst)-1):\n",
+        "    if lst[j]>lst[j+1]:\n",
+        "      lst[j],lst[j+1]=lst[j+1],lst[j]\n",
+        "print(lst)"
+      ],
+      "metadata": {
+        "id": "zgr_utzsBbPn",
+        "outputId": "6e17bf7e-fca8-4ce9-e4bd-25f19621eb61",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": 65,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "[1, 2, 5, 9]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# 1️⃣7️⃣ Check if two strings are isomorphic\n",
+        "\n",
+        "# Input: \"egg\", \"add\"\n",
+        "# Output: True\n",
+        "def is_isomorphic(s,l):\n",
+        "  if len(s)!=len(l):\n",
+        "    return False\n",
+        "  map1={}\n",
+        "  map2={}\n",
+        "  for a,b in zip(s,l):\n",
+        "    if a in map1 and map1[a]!=b:\n",
+        "      return False\n",
+        "    if b in map2 and map2[b]!=a:\n",
+        "      return False\n",
+        "    map1[a]=b\n",
+        "    map2[b]=a\n",
+        "  return True\n",
+        "print(is_isomorphic('egg','add'))\n"
+      ],
+      "metadata": {
+        "id": "QLOAh_CnBxMM",
+        "outputId": "8deaa5b2-1dc2-4f6c-ca1d-6ed9a5f7426d",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": 68,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "True\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# 1️⃣8️⃣ Find common elements between two lists\n",
+        "# Input: [1,2,3], [2,3,4]\n",
+        "# Output: [2,3]\n",
+        "l=[1,2,3]\n",
+        "s=[2,3]\n",
+        "res=[]\n",
+        "for i in l:\n",
+        "  if i in s:\n",
+        "    res.append(i)\n",
+        "print(res)\n"
+      ],
+      "metadata": {
+        "id": "8NTNdRrZDHyR",
+        "outputId": "5bde1d8a-bcf9-4bd8-c448-4ec30f4f4254",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": 69,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "[2, 3]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# 1️⃣9️⃣ Maximum sum of subarray of size K\n",
+        "# Input: [2,1,5,1,3,2], k=3\n",
+        "# Output: 9\n",
+        "lst=[2,1,5,1,3,2]\n",
+        "k=3\n",
+        "window_sum=sum(lst[:k])\n",
+        "max_sum=window_sum\n",
+        "\n",
+        "for i in range(k,len(lst)):\n",
+        "  window_sum+=lst[i]-lst[i-k]\n",
+        "  max_sum=max(max_sum,window_sum)\n",
+        "print(max_sum)"
+      ],
+      "metadata": {
+        "id": "q_rgyNyND6rR",
+        "outputId": "ac6fa0eb-6670-4128-86e4-e25c4edf4166",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": 74,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "9\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# 2️⃣0️⃣ Group anagrams\n",
+        "# Input: [\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]\n",
+        "# Output: groups of anagrams.\n",
+        "lst=[\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]\n",
+        "freq={}\n",
+        "for i in lst:\n",
+        "  key=''.join(sorted(i))\n",
+        "  if key in freq:\n",
+        "    freq[key].append(i)\n",
+        "  else:\n",
+        "    freq[key]=[i]\n",
+        "print(freq)\n",
+        ""
+      ],
+      "metadata": {
+        "id": "7OiuNJudEdQx",
+        "outputId": "61449b82-e5bd-4550-eeb8-fd1fac3a53af",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": 76,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "{'aet': ['eat', 'tea', 'ate'], 'ant': ['tan', 'nat'], 'abt': ['bat']}\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "if not strs:\n",
+        "  return ''\n",
+        "prefix=strs[0]\n",
+        "for i in strs[1:]:\n",
+        "  while not istartwith(prefix):\n",
+        "    prefix=prefix[:-1]\n",
+        ""
+      ],
+      "metadata": {
+        "id": "RpQ3g7ErKveS"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "lst=[1,2,9]\n",
+        "num=int(''.join(map(str,lst)))\n",
+        "num+=1\n",
+        "lst=[int(d) for d in str(num)]\n",
+        "print(lst)\n",
+        ""
+      ],
+      "metadata": {
+        "id": "gyVD5ojHNlHv",
+        "outputId": "44783fb0-9b1e-4c1a-883e-f0f940a087ab",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": 81,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "[1, 3, 0]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "d = {'a': 3, 'b': 1, 'c': 2}\n",
+        "lst=sorted(d.items(),key=lambda x :-x[1])\n",
+        "print(dict(lst))"
+      ],
+      "metadata": {
+        "id": "pzkgY7vmNp2_",
+        "outputId": "2abcd880-2dca-4f3e-e496-3591f6a5c58e",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": 82,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "{'a': 3, 'c': 2, 'b': 1}\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "i2jpZ6RYPUhP"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ],
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyOXUxIgesCmU7drLTengqIg",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "display_name": "Python 3",
+      "name": "python3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 0
+}
