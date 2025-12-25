@@ -1,0 +1,1 @@
+👋 Aspiring Data Analyst / Data Scientist with hands-on experience in data analysis, machine learning, and dashboarding, focused on transforming raw data into actionable business insights through real-world projects.
